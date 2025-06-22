@@ -11,13 +11,17 @@ interface NavItem {
   to: string
 }
 
+interface NavigationBarProps {
+    onContactClicked: () => void
+}
+
 const navigationItems: NavItem[] = [
   { name: "Home", to: "/" },
   { name: "Menu", to: "/menu" },
   { name: "Subscription", to: "/subscription" },
 ]
 
-export default function NavigationBar() {
+export default function NavigationBar({ onContactClicked } : NavigationBarProps) {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -42,7 +46,7 @@ export default function NavigationBar() {
               {item.name}
             </Link>
           ))}
-          <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]">Contact Us</Button>
+          <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={onContactClicked}>Contact Us</Button>
         </nav>
 
         {/* Mobile Navigation */}
@@ -73,7 +77,7 @@ export default function NavigationBar() {
                     {item.name}
                   </Link>
                 ))}
-                <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]">Contact Us</Button>
+                <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={onContactClicked}>Contact Us</Button>
               </nav>
             </div>
           </SheetContent>

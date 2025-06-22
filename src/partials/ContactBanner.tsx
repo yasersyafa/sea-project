@@ -1,9 +1,13 @@
-import { useState } from "react"
 import { X, Phone, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export const ContactBanner = () => {
-  const [isVisible, setIsVisible] = useState(true)
+interface ContactBannerProps {
+  isVisible: boolean
+  onClose: () => void
+}
+
+export const ContactBanner = ({ isVisible, onClose } : ContactBannerProps) => {
+  
 
   if (!isVisible) {
     return null
@@ -30,7 +34,7 @@ export const ContactBanner = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setIsVisible(false)}
+            onClick={onClose}
             className="h-8 w-8 p-0 text-slate-300 hover:text-white hover:bg-[#1A2E19]"
           >
             <X className="h-4 w-4" />
