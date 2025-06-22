@@ -20,7 +20,6 @@ const navigationItems: NavItem[] = [
 export default function NavigationBar() {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
-  const [isClosed, setIsClosed] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -43,7 +42,7 @@ export default function NavigationBar() {
               {item.name}
             </Link>
           ))}
-          <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={() => setIsClosed(false)}>Contact Us</Button>
+          <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]">Contact Us</Button>
         </nav>
 
         {/* Mobile Navigation */}
@@ -74,27 +73,12 @@ export default function NavigationBar() {
                     {item.name}
                   </Link>
                 ))}
-                <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={() => setIsClosed(false)}>Contact Us</Button>
+                <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]">Contact Us</Button>
               </nav>
             </div>
           </SheetContent>
         </Sheet>
       </div>
-      {!isClosed && (
-            <div className="border-y border-black flex justify-between items-center px-5">
-                <div>
-                <span className="text-xs">Contact: Brian +62812345678</span>
-                </div>
-                <button
-                className="hover:cursor-pointer"
-                onClick={() => {
-                    setIsClosed(true)
-                }}
-                >
-                X
-                </button>
-            </div>
-        )}
     </header>
   )
 }

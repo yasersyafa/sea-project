@@ -1,3 +1,4 @@
+import { ContactBanner } from "@/partials/ContactBanner"
 import NavigationBar from "@/partials/NavigationBar"
 import { Outlet } from "react-router"
 
@@ -6,6 +7,7 @@ const UserLayout = () => {
         <>
             <NavigationBar />
             <Outlet />
+            <ContactBanner />
         </>
     )
 }
