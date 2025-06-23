@@ -133,23 +133,23 @@ export default function TestimonialSection() {
             <CarouselContent>
                 {sampleTestimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
-                    <Card className="h-full">
-                    <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3">
-                        <Avatar>
-                            <AvatarFallback className="bg-[#2D4F2B] text-primary-foreground">
-                            {testimonial.initials}
-                            </AvatarFallback>
-                        </Avatar>
-                        <div>
-                            <h4 className="font-semibold">{testimonial.name}</h4>
-                            <StarRating rating={testimonial.rating} />
-                        </div>
-                        </div>
-                        <blockquote className="text-sm text-muted-foreground leading-relaxed">
-                        "{testimonial.message}"
-                        </blockquote>
-                    </CardContent>
+                    <Card className="h-full border border-[#2D4F2B]">
+                        <CardContent className="p-6 space-y-4">
+                            <div className="flex items-center gap-3">
+                            <Avatar>
+                                <AvatarFallback className="bg-[#2D4F2B] text-primary-foreground">
+                                {testimonial.initials}
+                                </AvatarFallback>
+                            </Avatar>
+                            <div>
+                                <h4 className="font-semibold">{testimonial.name}</h4>
+                                <StarRating rating={testimonial.rating} />
+                            </div>
+                            </div>
+                            <blockquote className="text-sm text-muted-foreground leading-relaxed">
+                            "{testimonial.message}"
+                            </blockquote>
+                        </CardContent>
                     </Card>
                 </CarouselItem>
                 ))}
@@ -161,7 +161,7 @@ export default function TestimonialSection() {
 
         {/* Testimonial Submission Form */}
         <section className="max-w-3xl mx-auto">
-            <Card>
+            <Card className="border border-[#2D4F2B]">
             <CardHeader>
                 <CardTitle>Share Your Experience</CardTitle>
                 <CardDescription>
