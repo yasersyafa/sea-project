@@ -145,7 +145,17 @@ export default function SubscriptionForm() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
-      {/* Enhanced Header */}
+      {/* Header Section */}
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">Our Subscription Plans</h1>
+            <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+              Start your healthy journey today! With our meal subscription, you’ll receive daily portions of nutritious, low-calorie meals that are as delicious as they are good for your body — no cooking required.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
