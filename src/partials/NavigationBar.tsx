@@ -46,7 +46,7 @@ export default function NavigationBar({ onContactClicked } : NavigationBarProps)
               {item.name}
             </Link>
           ))}
-          <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={onContactClicked}>Contact Us</Button>
+          <button className="text-sm font-medium transition-colors hover:cursor-pointer text-muted-foreground" onClick={onContactClicked}>Contact Us</button>
         </nav>
 
         {/* Mobile Navigation */}
