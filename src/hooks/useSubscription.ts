@@ -24,7 +24,22 @@ export function useSubscription() {
     }
   }
 
+  const getSubscription = async () => {
+    try {
+        const res = await api.get('/subscriptions', {
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        console.log(res.data)
+        return res.data
+    } catch {
+        toast.error('Failed fetch subscription data')
+    }
+  }
+
   return {
-    submitSubscription
+    submitSubscription,
+    getSubscription
   }
 }

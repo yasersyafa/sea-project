@@ -77,7 +77,7 @@ export default function ProfilePage() {
             <div className="bg-muted/50 rounded-lg p-4 space-y-3 border-l-4 border-emerald-500">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-lg">Premium Plan</h3>
+                  <h3 className="font-semibold text-lg">{}</h3>
                   <p className="text-sm text-muted-foreground">Full access to all features</p>
                 </div>
                 <Badge variant="default" className="bg-emerald-600 hover:bg-emerald-700">
