@@ -3,6 +3,7 @@ import HomePage from "@/pages/HomePage"
 import UserLayout from "@/layouts/UserLayout"
 import MenuPage from "@/pages/MenuPage"
 import SubscriptionPage from "./pages/SubscriptionPage"
+import RequireAuth from "@/pages/RequireAuth"
 
 const App = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const App = createBrowserRouter([
       },
       {
         path: 'subscription',
-        element: <SubscriptionPage />
+        element: (
+          <RequireAuth>
+            <SubscriptionPage />
+          </RequireAuth>
+        )
       }
     ]
   }
