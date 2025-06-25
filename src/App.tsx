@@ -7,6 +7,7 @@ import RequireAuth from "@/pages/RequireAuth"
 import LoginPage from "@/pages/LoginPage"
 import RegisterPage from "@/pages/RegisterPage"
 import ProfilePage from "@/pages/ProfilePage"
+import ScrollToTop from "@/components/ScrollToTop"
 
 const App = () => {
   const routes = useRoutes([
@@ -49,7 +50,12 @@ const App = () => {
       element: <RegisterPage />
     }
   ])
-  return routes
+  return (
+    <>
+      <ScrollToTop />
+      {routes}
+    </>
+  )
 }
 
 export default App
