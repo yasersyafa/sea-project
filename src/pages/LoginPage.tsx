@@ -51,6 +51,7 @@ export default function LoginPage() {
               Login
             </Button>
           </form>
+          <h3 className='text-xs mt-5 text-center'>Do not have any account? <Link to={'/register'} className='text-[#2D4F2B] font-medium hover:underline'>Sign up here</Link></h3>
         </CardContent>
       </Card>
     </div>
