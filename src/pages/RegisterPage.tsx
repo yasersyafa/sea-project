@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import api from '@/api/api'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-emerald-100 px-4">
       <Card className="w-full max-w-md shadow-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">Register SEA Catering</CardTitle>
@@ -84,11 +84,12 @@ export default function RegisterPage() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-[#2D4F2B] hover:bg-[#3c6637]"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 hover:cursor-pointer"
               disabled={loading}
             >
               {loading ? 'Registering...' : 'Register'}
             </Button>
+            <h3 className='text-xs mt-5 text-center'>Already have account? <Link to={'/login'} className='text-emerald-700 font-medium hover:underline'>Sign in here</Link></h3>
           </form>
         </CardContent>
       </Card>

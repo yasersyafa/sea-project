@@ -18,7 +18,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-emerald-100 px-4">
       <Card className="w-full max-w-md shadow-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">
@@ -47,11 +47,11 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <Button type="submit" className="w-full bg-[#2D4F2B] hover:bg-[#3c6637]">
+            <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 hover:cursor-pointer">
               Login
             </Button>
           </form>
-          <h3 className='text-xs mt-5 text-center'>Do not have any account? <Link to={'/register'} className='text-[#2D4F2B] font-medium hover:underline'>Sign up here</Link></h3>
+          <h3 className='text-xs mt-5 text-center'>Do not have any account? <Link to={'/register'} className='text-emerald-700 font-medium hover:underline'>Sign up here</Link></h3>
         </CardContent>
       </Card>
     </div>

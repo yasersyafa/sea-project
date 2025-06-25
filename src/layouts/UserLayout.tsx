@@ -7,7 +7,7 @@ import { Outlet } from "react-router"
 const UserLayout = () => {
     const [isVisible, setIsVisible] = useState(true)
     return (
-        <div className="overflow-x-hidden">
+        <div>
             
             <NavigationBar onContactClicked={() => setIsVisible(true)} />
             <Outlet />

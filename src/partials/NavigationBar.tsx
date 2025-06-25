@@ -99,6 +99,21 @@ export default function NavigationBar({ onContactClicked } : NavigationBarProps)
                   </Link>
                 ))}
                 <Button className="text-sm font-medium transition-colors bg-[#2D4F2B]" onClick={onContactClicked}>Contact Us</Button>
+                {user ? (
+                    <Link
+                      to={'/profile'}
+                      className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/profile" ? "text-[#2D4F2B] border-[#2D4F2B] pb-1" : "text-muted-foreground"}`}
+                    >
+                      Hello, { user.email }
+                    </Link>
+                  ) : (
+                    <Link
+                      to={'/login'}
+                      className={`text-sm border  border-primary rounded-sm px-3 py-1 font-medium transition-colors hover:text-primary text-muted-foreground`}
+                    >
+                      Login
+                    </Link>
+                )}
               </nav>
             </div>
           </SheetContent>

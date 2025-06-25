@@ -14,7 +14,7 @@ export const ContactBanner = ({ isVisible, onClose } : ContactBannerProps) => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#2D4F2B] text-white shadow-lg border-t border-[#1A2E19]">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-emerald-700 text-white shadow-lg border-t border-[#1A2E19]">
       <div className="container mx-auto px-4 py-6 space-y-5">
         <h1 className="font-bold text-3xl">Contact Us!</h1>
         <div className="flex items-center justify-between">

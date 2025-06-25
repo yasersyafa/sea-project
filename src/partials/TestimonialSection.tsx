@@ -120,16 +120,16 @@ export default function TestimonialSection() {
   }
 
   return (
-    <div className="w-full bg-[#FFE3BB] pt-32 pb-10">
-        <div className="max-w-7xl mx-auto p-6 space-y-12 bg-[#FFE3BB]">
+    <div className="w-full bg-emerald-100 pt-32 pb-10">
+        <div className="max-w-7xl mx-auto p-6 space-y-12">
         {/* Testimonial Carousel */}
         <section className="space-y-6">
             <div className="text-center space-y-2">
-            <h2 className="font-bold text-5xl xl:text-7xl text-center text-[#2D4F2B]">What Our Customers Say</h2>
+            <h2 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-center text-emerald-600">What Our Customers Say</h2>
             <p className="text-muted-foreground text-2xl">Don't just take our word for it - hear from our satisfied customers</p>
             </div>
 
-            <Carousel className="w-full mx-auto">
+            <Carousel className="w-full max-w-6xl mx-auto">
             <CarouselContent>
                 {sampleTestimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">

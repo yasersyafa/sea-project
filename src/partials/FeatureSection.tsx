@@ -1,10 +1,10 @@
 import { Salad, SquareActivity, Truck } from "lucide-react"
 
 const FeatureSection = () => (
-    <section className="w-full min-h-screen text-[#2D4F2B] flex flex-col items-center gap-5 justify-evenly py-20">
+    <section className="w-full bg-emerald-100 text-emerald-600 flex flex-col items-center gap-5 justify-evenly py-20">
         <div className="space-y-5">
-            <h1 className="font-bold text-5xl xl:text-7xl text-center">Our Services</h1>
-            <p className="text-muted-foreground text-2xl text-center max-w-7xl">we provide more than just meals — we offer a complete, personalized catering experience. Our services are designed to fit your goals, schedule, and preferences, making healthy eating easier than ever.</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center">Our Services</h1>
+            <p className="text-muted-foreground text-xl sm:text-2xl max-w-4xl text-center">we provide more than just meals — we offer a complete, personalized catering experience. Our services are designed to fit your goals, schedule, and preferences, making healthy eating easier than ever.</p>
         </div>
         {/* grid view for displaying key features */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-3.5 px-20">

@@ -244,13 +244,13 @@ export default function SubscriptionForm() {
                               >
                                 <Utensils
                                   className={`w-8 h-8 sm:w-10 sm:h-10 ${
-                                    formData.selectedPlan === plan.id ? "text-white" : "text-[#2D4F2B]"
+                                    formData.selectedPlan === plan.id ? "text-white" : "text-emerald-700"
                                   }}`}
                                 />
                               </div>
                               <CardTitle
                                 className={`text-lg sm:text-xl ${
-                                  formData.selectedPlan === plan.id ? "text-white" : "text-[#2D4F2B]"
+                                  formData.selectedPlan === plan.id ? "text-white" : "text-emerald-700"
                                 }`}
                               >
                                 {plan.name}
@@ -267,7 +267,7 @@ export default function SubscriptionForm() {
                               <div className="mb-4">
                                 <span
                                   className={`text-2xl sm:text-3xl font-bold ${
-                                    formData.selectedPlan === plan.id ? "text-white" : "text-[#2D4F2B]"
+                                    formData.selectedPlan === plan.id ? "text-white" : "text-emerald-700"
                                   }}`}
                                 >
                                   {formatCurrency(plan.price)}
@@ -287,7 +287,7 @@ export default function SubscriptionForm() {
                               >
                                 <div
                                   className={`h-full rounded-full transition-all duration-500 ${
-                                    formData.selectedPlan === plan.id ? "bg-white" : "bg-[#2D4F2B]"
+                                    formData.selectedPlan === plan.id ? "bg-white" : "bg-emerald-700"
                                   }`}
                                   style={{ width: formData.selectedPlan === plan.id ? "100%" : "0%" }}
                                 />
@@ -444,7 +444,7 @@ export default function SubscriptionForm() {
                             >
                               <div
                                 className={`h-full rounded-full transition-all duration-500 ${
-                                  formData.selectedDeliveryDays.includes(day.id) ? "bg-white" : "bg-[#2D4F2B]"
+                                  formData.selectedDeliveryDays.includes(day.id) ? "bg-white" : "bg-emerald-700"
                                 }`}
                                 style={{ width: formData.selectedDeliveryDays.includes(day.id) ? "100%" : "0%" }}
                               />
@@ -540,7 +540,7 @@ export default function SubscriptionForm() {
           <div className="hidden lg:block lg:col-span-1">
             <Card className="sticky top-36 shadow-xl">
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl" style={{ color: "#2D4F2B" }}>
+                <CardTitle className="text-xl text-emerald-700">
                   Order Summary
                 </CardTitle>
               </CardHeader>
@@ -608,15 +608,14 @@ export default function SubscriptionForm() {
                     <Separator />
                     <div className="flex justify-between items-center font-bold text-xl">
                       <span>Monthly Total:</span>
-                      <span style={{ color: "#2D4F2B" }}>{formatCurrency(totalPrice)}</span>
+                      <span className="text-emerald-700">{formatCurrency(totalPrice)}</span>
                     </div>
                   </>
                 )}
 
                 <Button
                   onClick={handleSubmit}
-                  className="w-full text-white h-12 text-base font-semibold"
-                  style={{ backgroundColor: "#2D4F2B" }}
+                  className="w-full text-white h-12 text-base font-semibold bg-emerald-600 hover:bg-emerald-800"
                   size="lg"
                   disabled={totalPrice === 0}
                 >

@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3A6B36] text-white">
+    <footer className="bg-emerald-700 text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Brand Name */}
