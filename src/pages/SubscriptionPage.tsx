@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Phone, User, Calendar, Utensils, AlertCircle } from "lucide-react"
 import { useAuth } from '@/hooks/useAuth'
+import { useSubscription } from "@/hooks/useSubscription"
 
 const plans = [
   { id: "diet", name: "Diet Plan", price: 30000, description: "Healthy and balanced meals" },
@@ -36,6 +37,7 @@ const deliveryDays = [
 export default function SubscriptionForm() {
   const { getUser } = useAuth()
   const user = getUser()
+  const { submitSubscription } = useSubscription()
 
   const [formData, setFormData] = useState({
     name: user!.name,
@@ -133,15 +135,18 @@ export default function SubscriptionForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateForm()) {
-      console.log("Form submitted:", {
-        ...formData,
-        totalPrice: calculateTotalPrice(),
-      })
-      alert("Subscription form submitted successfully!")
+    if (!validateForm()) return
+
+    const payload = {
+      plan: formData.selectedPlan,
+      mealTypes: formData.selectedMealTypes,
+      deliveryDays: formData.selectedDeliveryDays,
+      allergies: formData.allergies,
     }
+
+    await submitSubscription(payload)
   }
 
   const totalPrice = calculateTotalPrice()
