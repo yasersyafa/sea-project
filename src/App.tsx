@@ -5,6 +5,7 @@ import MenuPage from "@/pages/MenuPage"
 import SubscriptionPage from "./pages/SubscriptionPage"
 import RequireAuth from "@/pages/RequireAuth"
 import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
 
 const App = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const App = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />
   }
 ])
 
