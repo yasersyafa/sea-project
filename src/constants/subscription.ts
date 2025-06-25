@@ -19,3 +19,18 @@ export const deliveryDays = [
   { id: "saturday", name: "Saturday", short: "Sat" },
   { id: "sunday", name: "Sunday", short: "Sun" },
 ]
+
+export interface Subscription {
+  id: number
+  plan: string
+  mealTypes: string[] // ini akan diubah dari JSON.parse
+  deliveryDays: string[]
+  allergies: string | null
+  price: number
+  user: {
+    id: number
+    name: string
+    email: string
+    telephone: string
+  }
+}

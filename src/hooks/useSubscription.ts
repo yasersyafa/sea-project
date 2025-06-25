@@ -1,6 +1,8 @@
 import api from "@/api/api"
 import { toast } from "react-toastify"
 import { useAuth } from "./useAuth"
+import { useQuery } from "@tanstack/react-query"
+import type { Subscription } from "@/constants/subscription"
 
 export function useSubscription() {
   const { getToken } = useAuth()
@@ -25,21 +27,23 @@ export function useSubscription() {
   }
 
   const getSubscription = async () => {
-    try {
-        const res = await api.get('/subscriptions', {
-            headers: {
-                Authorization: `Bearer ${getToken()}`
-            }
-        })
-        console.log(res.data)
-        return res.data
-    } catch {
-        toast.error('Failed fetch subscription data')
-    }
+    const res = await api.get('/subscriptions', {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    })
+    return res.data
+  }
+
+  const useSubscriptionQuery = () => {
+    return useQuery<Subscription[]>({
+        queryKey: ['subscriptions'],
+        queryFn: getSubscription
+    })
   }
 
   return {
     submitSubscription,
-    getSubscription
+    useSubscriptionQuery
   }
 }

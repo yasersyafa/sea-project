@@ -2,8 +2,9 @@ import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { User, Phone, Mail, CreditCard, UtensilsCrossed, LogOut } from "lucide-react"
+import { User, Phone, Mail, CreditCard, UtensilsCrossed, LogOut, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ProfileSkeleton } from "@/partials/ProfileSkeleton"
 import {
   Dialog,
   DialogContent,
@@ -13,15 +14,24 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useAuth } from "@/hooks/useAuth"
+import { useSubscription } from "@/hooks/useSubscription"
+import { Link } from "react-router"
 
 export default function ProfilePage() {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false)
   const { logout, getUser } = useAuth()
+  const { useSubscriptionQuery } = useSubscription()
+
+  const { data, isLoading, isError } = useSubscriptionQuery()
 
   const user = getUser()
   const handleLogout = () => {
     setShowLogoutDialog(false)
     logout()
+  }
+
+  if(isLoading || isError) {
+    return <ProfileSkeleton />
   }
 
   return (
@@ -67,9 +77,10 @@ export default function ProfilePage() {
           </div>
 
           <Separator />
-
           {/* Subscription Plan */}
-          <div className="space-y-3">
+
+          {data!.length > 0 ? data!.map((sub) => (
+            <div className="space-y-3">
             <div className="flex items-center gap-2">
               <CreditCard className="h-4 w-4 text-emerald-600" />
               <label className="text-sm font-medium">Subscription Plan</label>
@@ -77,8 +88,8 @@ export default function ProfilePage() {
             <div className="bg-muted/50 rounded-lg p-4 space-y-3 border-l-4 border-emerald-500">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-lg">{}</h3>
-                  <p className="text-sm text-muted-foreground">Full access to all features</p>
+                  <h3 className="font-semibold text-lg uppercase">{sub.plan} Plan</h3>
+                  <p className="text-sm text-muted-foreground">Here is your subscription plan</p>
                 </div>
                 <Badge variant="default" className="bg-emerald-600 hover:bg-emerald-700">
                   Active
@@ -87,35 +98,60 @@ export default function ProfilePage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="font-medium">Price:</span>
-                  <p className="text-muted-foreground">$29.99/month</p>
+                  <span className="font-medium">Plan Name:</span>
+                  <p className="text-muted-foreground">{sub.plan} plan</p>
                 </div>
                 <div>
-                  <span className="font-medium">Next Billing:</span>
-                  <p className="text-muted-foreground">March 15, 2024</p>
+                  <span className="font-medium">Total Price:</span>
+                  <p className="text-muted-foreground">Rp. {Number(sub.price).toLocaleString('id-ID')}</p>
                 </div>
                 <div>
-                  <span className="font-medium">Started:</span>
-                  <p className="text-muted-foreground">January 15, 2024</p>
+                  <span className="font-medium">Meal Types:</span>
+                  <p className="text-muted-foreground">{sub.mealTypes.join(', ')}</p>
                 </div>
                 <div>
-                  <span className="font-medium">Auto-Renewal:</span>
-                  <p className="text-muted-foreground">Enabled</p>
+                  <span className="font-medium">Delivery Days:</span>
+                  <p className="text-muted-foreground">{sub.deliveryDays.join(', ')}</p>
                 </div>
               </div>
 
               <div>
-                <span className="font-medium text-sm">Included Features:</span>
-                <ul className="text-sm text-muted-foreground mt-1 space-y-1">
-                  <li>• Unlimited menu selections</li>
-                  <li>• Priority customer support</li>
-                  <li>• Advanced meal planning</li>
-                  <li>• Nutritional insights</li>
-                  <li>• Family sharing (up to 4 members)</li>
-                </ul>
+                <span className="font-medium text-sm">Allergies Note:</span>
+                <div className="mt-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-sm text-yellow-800">⚠️ Contains: {sub?.allergies}</p>
+                  <p className="text-xs text-yellow-700 mt-1">
+                    Please review each meal carefully. Contact support if you have severe allergies.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+          ))
+          : (
+            // No Subscription
+            <div className="bg-muted/30 rounded-lg p-6 text-center space-y-4 border-2 border-dashed border-muted-foreground/30">
+                <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
+                  <CreditCard className="h-8 w-8 text-emerald-600" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold text-lg">No Active Subscription</h3>
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    You don't have an active meal subscription plan. Subscribe now to start enjoying fresh, delicious
+                    meals delivered to your door.
+                  </p>
+                </div>
+                <Link to={'/subscription'}>
+                    <Button className="bg-emerald-600 hover:bg-emerald-700 hover:cursor-pointer text-white">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Subscribe to a Plan
+                    </Button>
+                </Link>
+                <p className="text-xs text-muted-foreground">
+                  Choose from our variety of meal plans starting at Rp. 30.000/meal
+                </p>
+            </div>
+          )}
+          
 
           <Separator />
 
