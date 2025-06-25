@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight} from "lucide-react"
+import { Link } from "react-router"
 
 export default function Jumbotron() {
   return (
@@ -19,13 +20,15 @@ export default function Jumbotron() {
 
           {/* CTA Button */}
           <div className="mb-12">
-            <Button
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              See Pricing and Plans
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to={'/subscription'}>
+                <Button
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-700 hover:cursor-pointer text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                See Pricing and Plans
+                <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+            </Link>
           </div>
         </div>
       </div>
