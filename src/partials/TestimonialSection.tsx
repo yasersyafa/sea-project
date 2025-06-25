@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Star } from "lucide-react"
+import { LogIn, Star, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { useAuth } from "@/hooks/useAuth"
+import { Link } from "react-router"
 
 // Sample testimonials data
 const sampleTestimonials = [
@@ -89,8 +91,10 @@ function StarRating({
 }
 
 export default function TestimonialSection() {
+  const { getUser } = useAuth()
+  const user = getUser()
   const [formData, setFormData] = useState({
-    name: "",
+    name: user!.name,
     message: "",
     rating: 0,
   })
@@ -108,7 +112,7 @@ export default function TestimonialSection() {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     // Reset form
-    setFormData({ name: "", message: "", rating: 0 })
+    setFormData({ name: user!.name, message: "", rating: 0 })
     setIsSubmitting(false)
 
     // You could show a success message here
@@ -160,7 +164,7 @@ export default function TestimonialSection() {
         </section>
 
         {/* Testimonial Submission Form */}
-        <section className="max-w-3xl mx-auto">
+        <section className="max-w-3xl mx-auto relative">
             <Card className="border border-[#2D4F2B]">
             <CardHeader>
                 <CardTitle>Share Your Experience</CardTitle>
@@ -179,6 +183,7 @@ export default function TestimonialSection() {
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     required
+                    disabled
                     />
                 </div>
 
@@ -213,12 +218,42 @@ export default function TestimonialSection() {
 
                 <Button
                     type="submit"
-                    className="w-full bg-[#2D4F2B]"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700"
                     disabled={isSubmitting || !formData.name || !formData.message || formData.rating === 0}
                 >
                     {isSubmitting ? "Submitting..." : "Submit Testimonial"}
                 </Button>
                 </form>
+
+                {/* unauthorized state */}
+                {!user && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-md">
+                    <div className="text-center space-y-4 p-6 max-w-md">
+                      <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Users className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold">Join Our Community</h3>
+                        <p className="text-muted-foreground">
+                          Sign in to share your experience and help others discover what makes our service special. Your
+                          voice matters!
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        <Link to={'/login'}>
+                          <Button className="w-full bg-emerald-600 hover:bg-emerald-700 cursor-pointer" size="lg">
+                            <LogIn className="w-4 h-4 mr-2" />
+                            Sign In to Share Your Story
+                          </Button>
+                        </Link>
+                        <p className="text-xs text-muted-foreground mt-3">
+                          Don't have an account?{" "}
+                          <Link to={'/register'} className="text-emerald-600 cursor-pointer hover:underline">Sign up for free</Link>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
             </CardContent>
             </Card>
         </section>

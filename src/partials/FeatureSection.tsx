@@ -1,7 +1,7 @@
 import { Salad, SquareActivity, Truck } from "lucide-react"
 
 const FeatureSection = () => (
-    <section className="w-full bg-emerald-100 text-emerald-600 flex flex-col items-center gap-5 justify-evenly py-20">
+    <section className="w-full bg-emerald-100 text-emerald-600 flex flex-col items-center gap-5 justify-evenly py-12">
         <div className="space-y-5">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center">Our Services</h1>
             <p className="text-muted-foreground text-xl sm:text-2xl max-w-4xl text-center">we provide more than just meals — we offer a complete, personalized catering experience. Our services are designed to fit your goals, schedule, and preferences, making healthy eating easier than ever.</p>
@@ -12,22 +12,22 @@ const FeatureSection = () => (
                 {/* icon */}
                 <Salad size={100} />
                 {/* title card */}
-                <h1 className="text-2xl font-bold">Meal Customization</h1>
-                <p className="text-muted-foreground text-xl text-center">Choose meals that suit your taste, dietary needs, and lifestyle. From calorie-specific plans to vegetarian or protein-rich options, you are in full control of your daily menu.</p>
+                <h1 className="text-xl font-bold">Meal Customization</h1>
+                <p className="text-muted-foreground text-center">Choose meals that suit your taste, dietary needs, and lifestyle. From calorie-specific plans to vegetarian or protein-rich options, you are in full control of your daily menu.</p>
             </div>
             <div className="border-2 border-[#2D4F2B] h-full hover:scale-105 bg-white transition-all min-h-[200px] flex flex-col items-center justify-center gap-3.5 rounded-xl p-5 text-center">
                 {/* icon */}
                 <Truck size={100} />
                 {/* title card */}
-                <h1 className="text-2xl font-bold">Delivery To Major Cities</h1>
-                <p className="text-muted-foreground text-xl text-center">We deliver fresh, ready-to-eat meals straight to your doorstep — now available in major cities across the country. Reliable, on-time, and always fresh.</p>
+                <h1 className="text-xl font-bold">Delivery To Major Cities</h1>
+                <p className="text-muted-foreground text-center">We deliver fresh, ready-to-eat meals straight to your doorstep — now available in major cities across the country. Reliable, on-time, and always fresh.</p>
             </div>
             <div className="border-2 border-[#2D4F2B] h-full hover:scale-105 bg-white transition-all min-h-[200px] flex flex-col items-center justify-center gap-3.5 rounded-xl p-5 text-center">
                 {/* icon */}
                 <SquareActivity size={100} />
                 {/* title card */}
-                <h1 className="text-2xl font-bold">Detailed Nutrition Information</h1>
-                <p className="text-muted-foreground text-xl text-center">Stay informed and in control of your health. Every meal comes with complete nutrition facts, including calories, macros, and ingredients — so you know exactly what you're eating.</p>
+                <h1 className="text-xl font-bold">Detailed Nutrition Information</h1>
+                <p className="text-muted-foreground text-center">Stay informed and in control of your health. Every meal comes with complete nutrition facts, including calories, macros, and ingredients — so you know exactly what you're eating.</p>
             </div>
         </div>
     </section>
