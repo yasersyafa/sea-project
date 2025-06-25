@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Phone, User, Calendar, Utensils, AlertCircle } from "lucide-react"
+import { useAuth } from '@/hooks/useAuth'
 
 const plans = [
   { id: "diet", name: "Diet Plan", price: 30000, description: "Healthy and balanced meals" },
@@ -33,9 +34,12 @@ const deliveryDays = [
 ]
 
 export default function SubscriptionForm() {
+  const { getUser } = useAuth()
+  const user = getUser()
+
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
+    name: user!.name,
+    phone: user!.telephone,
     selectedPlan: "",
     selectedMealTypes: [] as string[],
     selectedDeliveryDays: [] as string[],
@@ -181,6 +185,7 @@ export default function SubscriptionForm() {
                       onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                       className={`mt-2 h-12 text-base ${errors.name ? "border-red-500" : ""}`}
                       placeholder="Enter your full name"
+                      disabled
                     />
                     {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                   </div>
@@ -197,6 +202,7 @@ export default function SubscriptionForm() {
                         onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
                         className={`pl-12 h-12 text-base ${errors.phone ? "border-red-500" : ""}`}
                         placeholder="e.g., +62812345678 or 08123456789"
+                        disabled
                       />
                     </div>
                     {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}

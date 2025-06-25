@@ -5,8 +5,9 @@ import { jwtDecode } from 'jwt-decode'
 
 export interface JwtPayload {
     id: number,
-    name: string,
     email: string,
+    name: string,
+    telephone: string,
     role: 'user' | 'admin',
     exp: number,
     iat: number

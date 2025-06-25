@@ -58,7 +58,7 @@ export default function NavigationBar({ onContactClicked } : NavigationBarProps)
               to={'/profile'}
               className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/profile" ? "text-[#2D4F2B] border-[#2D4F2B] pb-1" : "text-muted-foreground"}`}
             >
-              { user.email }
+              Hello, { user.email }
             </Link>
           ) : (
             <Link
