@@ -4,6 +4,7 @@ import UserLayout from "@/layouts/UserLayout"
 import MenuPage from "@/pages/MenuPage"
 import SubscriptionPage from "./pages/SubscriptionPage"
 import RequireAuth from "@/pages/RequireAuth"
+import LoginPage from "./pages/LoginPage"
 
 const App = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const App = createBrowserRouter([
         )
       }
     ]
+  },
+  {
+    path: '/login',
+    element: <LoginPage />
   }
 ])
 

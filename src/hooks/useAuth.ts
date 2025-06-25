@@ -47,7 +47,7 @@ export function useAuth() {
                 logout()
                 return null
             }
-
+            console.log(decoded)
             return decoded
         } catch {
             logout()
