@@ -9,7 +9,7 @@ import 'react-toastify/ReactToastify.css'
 const UserLayout = () => {
     const [isVisible, setIsVisible] = useState(true)
     return (
-        <>
+        <div className="overflow-x-hidden">
             {/* Toast container agar global */}
             <ToastContainer
                 position="top-right"
@@ -26,7 +26,7 @@ const UserLayout = () => {
             <Outlet />
             <ContactBanner onClose={() => setIsVisible(false)} isVisible={isVisible} />
             <FooterSection />
-        </>
+        </div>
     )
 }
 

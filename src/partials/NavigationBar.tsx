@@ -2,6 +2,7 @@
 import { Menu } from "lucide-react"
 import { Link, useLocation } from "react-router"
 import { useState } from "react"
+import { useAuth } from "@/hooks/useAuth"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -17,13 +18,15 @@ interface NavigationBarProps {
 
 const navigationItems: NavItem[] = [
   { name: "Home", to: "/" },
-  { name: "Menu", to: "/menu" },
-  { name: "Subscription", to: "/subscription" },
+  { name: "Our Menus", to: "/menu" },
+  { name: "Plans", to: "/subscription" },
 ]
 
 export default function NavigationBar({ onContactClicked } : NavigationBarProps) {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
+  const { getUser } = useAuth()
+  const user = getUser()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -34,7 +37,7 @@ export default function NavigationBar({ onContactClicked } : NavigationBarProps)
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-5">
           {navigationItems.map((item) => (
             <Link
               key={item.name}
@@ -47,6 +50,24 @@ export default function NavigationBar({ onContactClicked } : NavigationBarProps)
             </Link>
           ))}
           <button className="text-sm font-medium transition-colors hover:cursor-pointer text-muted-foreground" onClick={onContactClicked}>Contact Us</button>
+        </nav>
+
+        <nav className="hidden md:flex items-center space-x-5">
+          {user ? (
+            <Link
+              to={'/profile'}
+              className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/profile" ? "text-[#2D4F2B] border-[#2D4F2B] pb-1" : "text-muted-foreground"}`}
+            >
+              { user.name }
+            </Link>
+          ) : (
+            <Link
+              to={'/login'}
+              className={`text-sm border  border-primary rounded-sm px-3 py-1 font-medium transition-colors hover:text-primary text-muted-foreground`}
+            >
+              Login
+            </Link>
+          )}
         </nav>
 
         {/* Mobile Navigation */}
