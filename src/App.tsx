@@ -2,10 +2,11 @@ import { createBrowserRouter } from "react-router"
 import HomePage from "@/pages/HomePage"
 import UserLayout from "@/layouts/UserLayout"
 import MenuPage from "@/pages/MenuPage"
-import SubscriptionPage from "./pages/SubscriptionPage"
+import SubscriptionPage from "@/pages/SubscriptionPage"
 import RequireAuth from "@/pages/RequireAuth"
-import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/RegisterPage"
+import LoginPage from "@/pages/LoginPage"
+import RegisterPage from "@/pages/RegisterPage"
+import ProfilePage from "@/pages/ProfilePage"
 
 const App = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const App = createBrowserRouter([
         element: (
           <RequireAuth>
             <SubscriptionPage />
+          </RequireAuth>
+        )
+      },
+      {
+        path: 'profile',
+        element: (
+          <RequireAuth>
+            <ProfilePage />
           </RequireAuth>
         )
       }
