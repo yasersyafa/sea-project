@@ -9,50 +9,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useAuth } from "@/hooks/useAuth"
 import { Link } from "react-router"
-
-// Sample testimonials data
-const sampleTestimonials = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    message:
-      "Absolutely fantastic service! The team went above and beyond to ensure our project was completed on time and exceeded our expectations.",
-    rating: 5,
-    initials: "SJ",
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    message:
-      "Professional, reliable, and innovative. I couldn't be happier with the results. Highly recommend to anyone looking for quality work.",
-    rating: 5,
-    initials: "MC",
-  },
-  {
-    id: 3,
-    name: "Emily Rodriguez",
-    message:
-      "Great communication throughout the entire process. The final product was exactly what we envisioned and more.",
-    rating: 4,
-    initials: "ER",
-  },
-  {
-    id: 4,
-    name: "David Thompson",
-    message:
-      "Outstanding attention to detail and customer service. They really listened to our needs and delivered accordingly.",
-    rating: 5,
-    initials: "DT",
-  },
-  {
-    id: 5,
-    name: "Lisa Wang",
-    message:
-      "Impressed by the creativity and technical expertise. The project was delivered on schedule and within budget.",
-    rating: 4,
-    initials: "LW",
-  },
-]
+import useTestimonial from "@/hooks/useTestimonial"
+import getInitials from "@/constants/testimonial"
 
 function StarRating({
   rating,
@@ -91,10 +49,18 @@ function StarRating({
 }
 
 export default function TestimonialSection() {
+  // get profile user
   const { getUser } = useAuth()
   const user = getUser()
+
+  // useTestimonial
+  const { useTestimonialQuery, submitTestimonial } = useTestimonial()
+  const { data, refetch } = useTestimonialQuery()
+  console.log(data)
+
+  // form data
   const [formData, setFormData] = useState({
-    name: user!.name,
+    name: user?.name,
     message: "",
     rating: 0,
   })
@@ -109,14 +75,11 @@ export default function TestimonialSection() {
     setIsSubmitting(true)
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await submitTestimonial(formData, refetch)
 
     // Reset form
-    setFormData({ name: user!.name, message: "", rating: 0 })
+    setFormData({ name: user?.name, message: "", rating: 0 })
     setIsSubmitting(false)
-
-    // You could show a success message here
-    alert("Thank you for your testimonial!")
   }
 
   const handleInputChange = (field: string, value: string | number) => {
@@ -135,18 +98,18 @@ export default function TestimonialSection() {
 
             <Carousel className="w-full max-w-6xl mx-auto">
             <CarouselContent>
-                {sampleTestimonials.map((testimonial) => (
+                {data && data.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
                     <Card className="h-full border border-[#2D4F2B]">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-center gap-3">
                             <Avatar>
                                 <AvatarFallback className="bg-[#2D4F2B] text-primary-foreground">
-                                {testimonial.initials}
+                                {getInitials(testimonial.user.name)}
                                 </AvatarFallback>
                             </Avatar>
                             <div>
-                                <h4 className="font-semibold">{testimonial.name}</h4>
+                                <h4 className="font-semibold">{testimonial.user.name}</h4>
                                 <StarRating rating={testimonial.rating} />
                             </div>
                             </div>

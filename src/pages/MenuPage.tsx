@@ -341,10 +341,6 @@ export default function MenuPage() {
                     </div>
                   </DialogContent>
                 </Dialog>
-
-                <Button variant="outline" className="w-full">
-                  Add to Cart
-                </Button>
               </CardFooter>
             </Card>
           ))}
